@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>altV_InteractionsJsWrapper</RootNamespace>
+    <AssemblyName>altV-InteractionsJsWrapper</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AltV.Net" Version="1.36.7-rc">
+      <NoWarn></NoWarn>
+    </PackageReference>
+    <PackageReference Include="AltV.Net.Interactions" Version="1.0.0-dev-preview" />
+  </ItemGroup>
+
+</Project>
