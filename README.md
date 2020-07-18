@@ -55,10 +55,9 @@ export function removeInteraction(type: number, id: number): void;
 ```javascript
 import alt from 'alt-client';
 
-// We will use the already implemented event from alt to listen to key presses
 alt.on('keydown', (key) => {
 	alt.log(key);
-	alt.emitServer('keyDown', key); // We use the name of the event that we registered on the server side
+	alt.emitServer('keyDown', key);
 });
 ```
 
@@ -70,12 +69,9 @@ import * as interactions from 'interactions';
 
 console.log(alt.getResourceExports('interactions'));
 
-interactions.registerInteractionEvent('keyDown'); // Registering an event with a name 'keyDown'
-interactions.createInteraction(0, 12, new alt.Vector3(0, 0, 72), 0, 100); // We create an interaction on the specified position
+interactions.registerInteractionEvent('keyDown');
+interactions.createInteraction(0, 12, new alt.Vector3(0, 0, 72), 0, 100);
 
-// We listen to the registered event
-// The second parameter is array of interactions to which we were closest when we pressed a key
-// The third parameter is our key which we sent from the client side
 alt.on('keyDown', (player, interactions, key) => {
 	if (key === 69) {
 		console.log(player.name);
