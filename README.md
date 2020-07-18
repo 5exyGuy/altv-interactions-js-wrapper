@@ -57,7 +57,7 @@ import alt from 'alt-client';
 
 alt.on('keydown', (key) => {
 	alt.log(key);
-	alt.emitServer('keyDown', key);
+	alt.emitServer('customKeyDown', key);
 });
 ```
 
@@ -69,10 +69,10 @@ import * as interactions from 'interactions';
 
 console.log(alt.getResourceExports('interactions'));
 
-interactions.registerInteractionEvent('keyDown');
+interactions.registerInteractionEvent('customKeyDown');
 interactions.createInteraction(0, 12, new alt.Vector3(0, 0, 72), 0, 100);
 
-alt.on('keyDown', (player, interactions, key) => {
+alt.on('customKeyDown', (player, interactions, key) => {
 	if (key === 69) {
 		console.log(player.name);
 		console.log(`Key: ${key}`);

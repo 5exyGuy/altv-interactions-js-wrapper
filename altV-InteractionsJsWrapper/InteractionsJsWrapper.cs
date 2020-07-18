@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Numerics;
 using AltV.Net;
 using AltV.Net.Elements.Entities;
@@ -79,7 +78,7 @@ namespace altV_InteractionsJsWrapper
 
             Action<IPlayer, object> action = new Action<IPlayer, object>(new Action<IPlayer, object>(async (player, value) => {
                 IInteraction[] interactions = await AltInteractions.FindInteractions(player.Position, player.Dimension);
-                Alt.Emit(name, player, value, new Interactions(interactions));
+                Alt.Emit(name, player, new Interactions(interactions), value);
             }));
 
             Alt.OnClient(name, new Action<IPlayer, object>(action));
