@@ -1,6 +1,6 @@
 # altV-InteractionsJsWrapper
 
-A Javascript Wrapper for C# Interactions
+A Simple Javascript Wrapper to work with C# Interactions
 
 ## Installation
 
