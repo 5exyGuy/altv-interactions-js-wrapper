@@ -18,21 +18,14 @@ import * as interactions from 'resource_name';
 
 ### Functions
 
-Registers a client event on the server that listens for incoming events from the client itself.
-
 ```typescript
+// Registers a client event on the server that listens for incoming events from the client itself
 export function registerInteractionEvent(name: string): void;
-```
 
-Removes a client event from the server.
-
-```typescript
+// Removes a client event from the server
 export function unregisterInteractionEvent(name: string): void;
-```
 
-Creates a new interaction with the specified parameters.
-
-```typescript
+// Creates a new interaction with the specified parameters
 export function createInteraction(
 	type: number,
 	id: number,
@@ -40,29 +33,17 @@ export function createInteraction(
 	dimension: number,
 	range: number
 ): number;
-```
 
-Changes the position of the created interaction.
-
-```typescript
+// Changes the position of the created interaction
 export function setInteractionPosition(type: number, id: number, position: Vector3): void;
-```
 
-Changes the distance of the created interaction.
-
-```typescript
+// Changes the distance of the created interaction
 export function setInteractionRange(type: number, id: number, range: number): void;
-```
 
-Changes the dimension of the created interaction.
-
-```typescript
+// Changes the dimension of the created interaction
 export function setInteractionDimension(type: number, id: number. dimension: number): void;
-```
 
-Removes interaction with specified parameters.
-
-```typescript
+// Removes interaction with specified parameters
 export function removeInteraction(type: number, id: number): void;
 ```
 
