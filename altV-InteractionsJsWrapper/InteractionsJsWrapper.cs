@@ -146,6 +146,7 @@ namespace altV_InteractionsJsWrapper
             if (interaction == null) return;
 
             AltInteractions.RemoveInteraction(interaction);
+            interactions.Remove(interaction);
         }
 
         public override void OnStop()
