@@ -42,6 +42,24 @@ export function createInteraction(
 ): number;
 ```
 
+Changes the position of the created interaction.
+
+```typescript
+export function setInteractionPosition(type: number, id: number, position: Vector3): void;
+```
+
+Changes the distance of the created interaction.
+
+```typescript
+export function setInteractionRange(type: number, id: number, range: number): void;
+```
+
+Changes the dimension of the created interaction.
+
+```typescript
+export function setInteractionDimension(type: number, id: number. dimension: number): void;
+```
+
 Removes interaction with specified parameters.
 
 ```typescript

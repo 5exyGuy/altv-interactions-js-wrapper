@@ -59,7 +59,7 @@ namespace altV_InteractionsJsWrapper
             }
         }
 
-        private List<IInteraction> interactions = new List<IInteraction>();
+        private List<Interaction> interactions = new List<Interaction>();
         private Dictionary<string, Action<IPlayer, object>> registeredEvents = new Dictionary<string, Action<IPlayer, object>>();
 
         public override void OnStart()
@@ -69,6 +69,9 @@ namespace altV_InteractionsJsWrapper
             Alt.Export("registerInteractionEvent", new Action<string>(RegisterInteractionEvent));
             Alt.Export("unregisterInteractionEvent", new Action<string>(UnregisterInteractionEvent));
             Alt.Export("createInteraction", new Func<long, long, Vector3, int, int, ulong>(CreateInteraction));
+            Alt.Export("setInteractionPosition", new Action<long, long, Vector3>(SetInteractionPosition));
+            Alt.Export("setInteractionRange", new Action<long, long, int>(SetInteractionRange));
+            Alt.Export("setInteractionDimension", new Action<long, long, int>(SetInteractionDimension));
             Alt.Export("removeInteraction", new Action<long, long>(RemoveInteraction));
         }
 
@@ -95,7 +98,7 @@ namespace altV_InteractionsJsWrapper
             registeredEvents.Remove(name);
         }
 
-        private IInteraction GetInteraction(long type, long id)
+        private Interaction GetInteraction(long type, long id)
         {
             return interactions.Find((item) => item.Type == (ulong) type && item.Id == (uint) id);
         }
@@ -109,13 +112,41 @@ namespace altV_InteractionsJsWrapper
             return interaction.Id;
         }
 
+        private void SetInteractionPosition(long type, long id, Vector3 position)
+        {
+            Interaction interaction = GetInteraction(type, id);
+
+            if (interaction == null) return;
+
+            interaction.Position = position;
+        }
+
+        private void SetInteractionRange(long type, long id, int range)
+        {
+            Interaction interaction = GetInteraction(type, id);
+
+            if (interaction == null) return;
+
+            interaction.Range = (uint) range;
+        }
+
+        private void SetInteractionDimension(long type, long id, int dimension) 
+        {
+            Interaction interaction = GetInteraction(type, id);
+
+            if (interaction == null) return;
+
+            interaction.Dimension = dimension;
+        }
+
         private void RemoveInteraction(long type, long id)
         {
-            IInteraction interaction = GetInteraction(type, id);
+            Interaction interaction = GetInteraction(type, id);
+
+            if (interaction == null) return;
 
             AltInteractions.RemoveInteraction(interaction);
         }
-        
 
         public override void OnStop()
         {
