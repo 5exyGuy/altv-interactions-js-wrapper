@@ -37,11 +37,23 @@ export function createInteraction(
 // Changes the position of the created interaction
 export function setInteractionPosition(type: number, id: number, position: Vector3): void;
 
+// Returns the position of the created interaction
+export function getInteractionPosition(type: number, id: number): Vector3;
+
 // Changes the distance of the created interaction
 export function setInteractionRange(type: number, id: number, range: number): void;
 
+// Returns the distance of the created interaction
+export function getInteractionRange(type: number, id: number): number;
+
 // Changes the dimension of the created interaction
-export function setInteractionDimension(type: number, id: number. dimension: number): void;
+export function setInteractionDimension(type: number, id: number, dimension: number): void;
+
+// Returns the dimension of the created interaction
+export function getInteractionDimension(type: number, id: number): number;
+
+// Checks if the specified interaction exists
+export function doesInteractionExist(type: number, id: number): boolean;
 
 // Removes interaction with specified parameters
 export function removeInteraction(type: number, id: number): void;

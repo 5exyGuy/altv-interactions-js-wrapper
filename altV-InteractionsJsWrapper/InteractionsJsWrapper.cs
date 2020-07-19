@@ -70,8 +70,12 @@ namespace altV_InteractionsJsWrapper
             Alt.Export("unregisterInteractionEvent", new Action<string>(UnregisterInteractionEvent));
             Alt.Export("createInteraction", new Func<long, long, Vector3, int, int, ulong>(CreateInteraction));
             Alt.Export("setInteractionPosition", new Action<long, long, Vector3>(SetInteractionPosition));
+            Alt.Export("getInteractionPosition", new Func<long, long, Vector3>(GetInteractionPosition));
             Alt.Export("setInteractionRange", new Action<long, long, int>(SetInteractionRange));
+            Alt.Export("getInteractionRange", new Func<long, long, uint>(GetInteractionRange));
             Alt.Export("setInteractionDimension", new Action<long, long, int>(SetInteractionDimension));
+            Alt.Export("getInteractionDimension", new Func<long, long, int>(GetInteractionDimension));
+            Alt.Export("doesInteractionExist", new Func<long, long, bool>(DoesInteractionExist));
             Alt.Export("removeInteraction", new Action<long, long>(RemoveInteraction));
         }
 
@@ -121,6 +125,13 @@ namespace altV_InteractionsJsWrapper
             interaction.Position = position;
         }
 
+        private Vector3 GetInteractionPosition(long type, long id)
+        {
+            Interaction interaction = GetInteraction(type, id);
+
+            return interaction.Position;
+        }
+
         private void SetInteractionRange(long type, long id, int range)
         {
             Interaction interaction = GetInteraction(type, id);
@@ -130,6 +141,14 @@ namespace altV_InteractionsJsWrapper
             interaction.Range = (uint) range;
         }
 
+
+        private uint GetInteractionRange(long type, long id)
+        {
+            Interaction interaction = GetInteraction(type, id);
+
+            return interaction.Range;
+        }
+
         private void SetInteractionDimension(long type, long id, int dimension) 
         {
             Interaction interaction = GetInteraction(type, id);
@@ -137,6 +156,20 @@ namespace altV_InteractionsJsWrapper
             if (interaction == null) return;
 
             interaction.Dimension = dimension;
+        }
+
+        private int GetInteractionDimension(long type, long id)
+        {
+            Interaction interaction = GetInteraction(type, id);
+
+            return interaction.Dimension;
+        }
+
+        private bool DoesInteractionExist(long type, long id)
+        {
+            Interaction interaction = GetInteraction(type, id);
+
+            return interaction != null;
         }
 
         private void RemoveInteraction(long type, long id)
