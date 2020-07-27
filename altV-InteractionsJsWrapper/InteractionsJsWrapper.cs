@@ -59,7 +59,7 @@ namespace altV_InteractionsJsWrapper
             }
         }
 
-        private List<Interaction> interactions = new List<Interaction>();
+        private Dictionary<string, Interaction> interactions = new Dictionary<string, Interaction>();
         private Dictionary<string, Action<IPlayer, object>> registeredEvents = new Dictionary<string, Action<IPlayer, object>>();
 
         public override void OnStart()
@@ -104,14 +104,14 @@ namespace altV_InteractionsJsWrapper
 
         private Interaction GetInteraction(long type, long id)
         {
-            return interactions.Find((item) => item.Type == (ulong) type && item.Id == (uint) id);
+            return interactions[$"{type}_{id}"];
         }
 
         private ulong CreateInteraction(long type, long id, Vector3 position, int dimension, int range)
         {
             Interaction interaction = new Interaction((ulong) type, (ulong) id, position, dimension, (uint) range);
             AltInteractions.AddInteraction(interaction);
-            interactions.Add(interaction);
+            interactions.Add($"{type}_{id}", interaction);
 
             return interaction.Id;
         }
@@ -179,7 +179,7 @@ namespace altV_InteractionsJsWrapper
             if (interaction == null) return;
 
             AltInteractions.RemoveInteraction(interaction);
-            interactions.Remove(interaction);
+            interactions.Remove($"{type}_{id}");
         }
 
         public override void OnStop()
